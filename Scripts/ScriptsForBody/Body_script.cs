@@ -7,15 +7,14 @@ public class Body_script : MonoBehaviour
     public float rot_speed = 10f;
     void Start()
     {
-        Vector3 rotationVector = new Vector3(0, 0, 0);
-        Quaternion rotation = Quaternion.Euler(rotationVector);
 
     }
 
     void Update()
     {
-        float y = 0;
-        y += Input.GetAxis("Vertical");
-        transform.rotation = Quaternion.Euler(0, y * Mathf.Sin(Time.time * 8) * rot_speed, 0);
+        var rot = gameObject.transform.rotation.eulerAngles;
+        float y_rot = 0;
+        y_rot += Input.GetAxis("Vertical");
+        transform.rotation = Quaternion.Euler(rot.x, rot.y + y_rot * Mathf.Sin(Time.time * 8) * rot_speed, rot.z);
     }
 }
