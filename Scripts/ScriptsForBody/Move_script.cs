@@ -4,38 +4,37 @@ using UnityEngine;
 
 public class Move_script : MonoBehaviour
 {
-    public GameObject player;
-    public float speed = 6.0f;
+    public int speed = 5;
+    public int speedRotation = 3;
     public int jumpSpeed = 50;
+
+    MovementParticleEmitter MPE;
     // Start is called before the first frame update
     void Start()
     {
-        player = (GameObject)this.gameObject;
+        MPE = GetComponent<MovementParticleEmitter>();
+    }
+
+    // Возвращет 1 если движение было, 0 в противном случае
+    bool MoveAxis(string name, Vector3 dirMove, bool movement)
+    {
+        float move = Input.GetAxis(name);
+        movement = movement | (move != 0);
+        if (move > 0)
+            transform.Translate(dirMove * 6.0f * Time.deltaTime);
+        if (move < 0)
+            transform.Translate(dirMove * -6.0f * Time.deltaTime);
+        return movement;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float move;
-        move = Input.GetAxis("Vertical");
-        if (move > 0)
-        {
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-                speed = 12;
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-                speed = 6;
-            transform.Translate(transform.forward * speed * Time.deltaTime);
-        }
-        if (move < 0)
-            transform.Translate(transform.forward * -speed * Time.deltaTime);
-        move = Input.GetAxis("Horizontal");
-        if (move > 0)
-            transform.Translate(transform.right * speed * Time.deltaTime);
-        if (move < 0)
-            transform.Translate(transform.right * -speed * Time.deltaTime);
-        move = Input.GetAxis("Jump");
-        if (move > 0)
-            transform.Translate(transform.up * jumpSpeed * Time.deltaTime);
-        
+        bool movement = false;
+        movement = MoveAxis("Vertical", transform.forward, movement);
+        movement = MoveAxis("Horizontal", transform.right, movement);
+        movement = MoveAxis("Jump", transform.up, movement);
+        MPE.Switch(movement);
+        print(movement);
     }
 }
