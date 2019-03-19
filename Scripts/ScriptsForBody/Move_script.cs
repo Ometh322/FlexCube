@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Move_script : MonoBehaviour
 {
-    public int speed = 5;
-    public int speedRotation = 3;
-    public int jumpSpeed = 50;
+    public float speed = 7f;
+    public float jumpSpeed = 15f;
 
     MovementParticleEmitter MPE;
     // Start is called before the first frame update
@@ -20,10 +19,12 @@ public class Move_script : MonoBehaviour
     {
         float move = Input.GetAxis(name);
         movement = movement | (move != 0);
+        if (name == "Jump" && move > 0)
+            transform.Translate(dirMove * jumpSpeed * Time.deltaTime);
         if (move > 0)
-            transform.Translate(dirMove * 6.0f * Time.deltaTime);
+            transform.Translate(dirMove * speed * Time.deltaTime);
         if (move < 0)
-            transform.Translate(dirMove * -6.0f * Time.deltaTime);
+            transform.Translate(dirMove * -speed * Time.deltaTime);
         return movement;
     }
 

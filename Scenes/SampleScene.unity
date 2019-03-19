@@ -802,10 +802,10 @@ GameObject:
   - component: {fileID: 575059832}
   - component: {fileID: 575059833}
   - component: {fileID: 575059834}
-  - component: {fileID: 575059835}
   - component: {fileID: 575059838}
   - component: {fileID: 575059837}
   - component: {fileID: 575059836}
+  - component: {fileID: 575059835}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -920,9 +920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419de96e08aa9be4fb9b3ac836ab8f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  speedRotation: 3
-  jumpSpeed: 50
+  speed: 7
+  jumpSpeed: 15
 --- !u!114 &575059833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6445e5496315f6743a393347adbe1a36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rot_speed: 10
+  rot_speed: 5
 --- !u!114 &575059836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4377,7 +4376,7 @@ ParticleSystem:
     separateAxes: 0
     range: {x: 0, y: 1}
   ColorBySpeedModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1

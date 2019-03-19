@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Body_script : MonoBehaviour
 {
-    public float rot_speed = 10f;
+    public float rot_speed = 5f;
     void Start()
     {
 
